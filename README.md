@@ -1,7 +1,5 @@
 # EFK (Elasticsearch, Fluent-bit and Kibana) for Log Management
 
-
-
 ## Create Namespace
 ```
 # kubectl create -f namespace.yml
