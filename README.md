@@ -4,7 +4,6 @@
 
 ## Create Namespace
 ```
-
 # kubectl create -f namespace.yml
 ---
 apiVersion: v1
