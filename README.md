@@ -1,5 +1,7 @@
 # EFK (Elasticsearch, Fluent-bit and Kibana) for Log Management
 
+
+
 ## Create Namespace
 ```
 # kubectl create -f namespace.yml
@@ -344,7 +346,7 @@ metadata:
 NAME                   DATA   AGE
 elasticsearch-config   1      3s
 ```
-## Re-deploy the StatefulSet with configmap & secret
+## Re-create the StatefulSet for elasticsearch with configmap & secret
 ```
 # kubectl create -f 2-elasticsearch_statefulset.yml
 ---
