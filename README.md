@@ -4,7 +4,6 @@
 
 ## Create Namespace
 ```
-
 # kubectl create -f namespace.yml
 ---
 apiVersion: v1
@@ -560,10 +559,11 @@ es-cluster-2            1/1     Running   0          32h
 kibana-dd478474-pr8v2   1/1     Running   0          11h
 ```
 # Now you can access the Kibana UI using the following URL with user elastic:
+```
 https://efk.yourdomain.com:32167/
 user: elastic
 Password: Hh5de3gmj8f543dgss5s2r
-
+```
 # Reference link:
 ```
 https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes
