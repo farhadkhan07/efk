@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: efk-kibana-ingress
+  namespace: efk-logging
+spec:
+  tls:
+  - hosts:
+      - efk-test.brilliant.com.bd
+    secretName: efk-ingress
+  rules:
+  - host: efk-test.brilliant.com.bd
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kibana
+          servicePort: 5601

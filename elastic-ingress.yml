@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: efk-elastic-ingress
+  namespace: efk-logging
+spec:
+  tls:
+  - hosts:
+      - efk-log-test.brilliant.com.bd
+    secretName: efk-ingress
+  rules:
+  - host: efk-log-test.brilliant.com.bd
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elasticsearch
+          servicePort: 9200
