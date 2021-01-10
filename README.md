@@ -798,6 +798,7 @@ spec:
 # kubectl create secret generic elasticsearch-pw-elastic -n logging --from-literal password=OL8tWA3eTu7B7F9NFlja
 
 or
+
 # kubectl create -f fluent-bit-secret.yml
 ---
 apiVersion: v1
@@ -885,12 +886,50 @@ spec:
       - operator: "Exists"
         effect: "NoSchedule"
 ```
+## Fluent-bit install on a centos machine:
+#### Configure Yum
+```
+[td-agent-bit]
+name = TD Agent Bit
+baseurl = http://packages.fluentbit.io/centos/7
+gpgcheck=1
+gpgkey=http://packages.fluentbit.io/fluentbit.key
+enabled=1
+```
+```
+# yum install td-agent-bit
+# systemctl start td-agent-bit
+# systemctl status td-agent-bit
+```
+```
+# cat /etc/td-agent-bit/td-agent-bit.conf
+
+---
+[INPUT]
+    Name cpu
+    Tag  my_sys_logs
+    # Interval Sec
+    # ====
+    # Read interval (sec) Default: 1
+    Interval_Sec 1
+
+[OUTPUT]
+    Name  es
+    Match *
+    index my_sys_logs
+    HOST efk-log.yourdomain.com
+    Port 32167
+    HTTP_User elastic
+    HTTP_Passwd Hh5de3gmj8f543dgss5s2r
+```
+
 # Reference link:
 ```
 https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes
 https://www.studytonight.com/post/efk-stack-setup-elasticsearch-fluentbit-and-kibana-for-kubernetes-log-management#
 https://www.studytonight.com/post/what-is-fluent-bit-fluent-bit-beginners-guide
 https://www.studytonight.com/post/setup-fluent-bit-with-elasticsearch-authentication-enabled-in-kubernetes
+https://www.studytonight.com/post/setup-fluent-bit-with-elasticsearch-and-kibana-efk-for-log-management-on-linux-machine-non-kubernetes
 https://mherman.org/blog/logging-in-kubernetes-with-elasticsearch-Kibana-fluentd/
 https://www.elastic.co/blog/getting-started-with-elasticsearch-security
 https://docs.timber.io/setup/platforms/kubernetes#installation
